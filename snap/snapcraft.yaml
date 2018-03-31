@@ -1,0 +1,62 @@
+name: kaffeine-player
+version-script: cat Changelog |grep Version|head -1|cut -d' ' -f2
+version: "snapshot"
+grade: stable
+summary: A media player by KDE with digital TV support
+confinement: strict
+description: |
+  Kaffeine is a media player. What makes it different from the others is
+  its excellent support of digital TV (DVB). kaffeine-player has user-friendly
+  interface, so that even first time users can start immediately playing
+  their movies: from DVD (including DVD menus, titles, chapters, etc.),
+  VCD, or a file.
+
+  NOTE: this version uses libVLC 2.2, with doesn't properly support
+  H.264/H.265. Due to that, it may not work with some digital TV
+  providers.
+
+apps:
+  kaffeine-player:
+    desktop: share/applications/org.kde.kaffeine.desktop
+    command: desktop-launch $SNAP/bin/kaffeine
+    plugs:
+      - camera
+      - desktop
+      - desktop-legacy
+      - home
+      - mount-observe
+      - network
+      - network-bind
+      - opengl
+      - optical-drive
+      - pulseaudio
+      - removable-media
+      - screen-inhibit-control
+      - unity7
+      - x11
+    slots:
+      - mpris
+parts:
+  kaffeine-player:
+    source: .
+    source-type: git
+    plugin: cmake
+    after: [desktop-qt5]
+    build-packages:
+      - cmake
+      - extra-cmake-modules
+      - g++
+      - gettext
+      - kdelibs5-dev
+      - kio-dev
+      - libdvbv5-dev
+      - libkf5coreaddons-dev
+      - libkf5i18n-dev
+      - libkf5solid-dev
+      - libkf5widgetsaddons-dev
+      - libkf5windowsystem-dev
+      - libqt5x11extras5-dev
+      - libvlc-dev
+      - libxss-dev
+      - make
+      - qt5-default
