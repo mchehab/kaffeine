@@ -39,31 +39,6 @@ parts:
     source-type: git
     plugin: autotools
     prepare: sed -i 's|0\.19\.8|0\.19\.7|'  configure.ac
-    prepare: |
-      sed -i 's|0\.19\.8|0\.19\.7|'  configure.ac
-    build: |
-      cd extras/tools
-      ./bootstrap
-      make -j $(getconf _NPROCESSORS_ONLN) .protoc
-      cd ../../
-      export PATH=$PWD/extras/tools/build/bin:$PATH
-      cd contrib && mkdir linux && cd linux
-      ../bootstrap
-      make list
-      # make -j $(getconf _NPROCESSORS_ONLN) .protobuf
-      make -j $(getconf _NPROCESSORS_ONLN) .libplacebo
-      make -j $(getconf _NPROCESSORS_ONLN) .ffmpeg
-      make -j $(getconf _NPROCESSORS_ONLN) .spatialaudio
-      make -j $(getconf _NPROCESSORS_ONLN) .microdns
-      make -j $(getconf _NPROCESSORS_ONLN) .libarchive
-      cd ../../
-      export NOCONFIGURE=1
-      autoreconf -fi
-      ./configure \
-          --prefix=$SNAPCRAFT_PART_INSTALL/usr \
-          --disable-wayland \
-          --enable-merge-ffmpeg
-      make -j $(getconf _NPROCESSORS_ONLN)
     build-packages:
       - git
       - g++
@@ -250,8 +225,9 @@ parts:
     source: .
     source-type: git
     plugin: cmake
-    after: [desktop-qt5]
-    after: [libvlc]
+    after:
+      - desktop-qt5
+      - libvlc
     build-packages:
       - cmake
       - extra-cmake-modules
