@@ -1,9 +1,9 @@
 name: kaffeine-player
 version-script: cat Changelog |grep Version|head -1|cut -d' ' -f2
 version: "snapshot"
-grade: stable
 summary: A media player by KDE with digital TV support
-confinement: strict
+confinement: devmode
+grade: devel
 description: |
   Kaffeine is a media player. What makes it different from the others is
   its excellent support of digital TV (DVB). kaffeine-player has user-friendly
@@ -11,14 +11,10 @@ description: |
   their movies: from DVD (including DVD menus, titles, chapters, etc.),
   VCD, or a file.
 
-  NOTE: this version uses libVLC 2.2, with doesn't properly support
-  H.264/H.265. Due to that, it may not work with some digital TV
-  providers.
-
 apps:
   kaffeine-player:
     desktop: share/applications/org.kde.kaffeine.desktop
-    command: desktop-launch $SNAP/bin/kaffeine
+    command: bin/desktop-launch kaffeine
     plugs:
       - camera
       - desktop
@@ -73,3 +69,11 @@ parts:
       - libqt5svg5 # for loading icon themes which are svg
       - locales-all
       - libc6
+      - zlib1g
+      - locales-all
+
+
+  gnu-bash:
+    source: http://ftp.gnu.org/gnu/bash/bash-4.3.tar.gz
+    plugin: autotools
+    configflags: ["--infodir=/var/bash/info"]
