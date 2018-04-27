@@ -33,11 +33,34 @@ apps:
     slots:
       - mpris
 parts:
+  desktop-qt5-kaffeine:
+    source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+    source-commit: 3a6209d90bcec218618348f7f41c873bdacc723f
+    source-subdir: qt/
+    plugin: make
+    make-parameters: ["FLAVOR=qt5"]
+    build-packages:
+      - qtbase5-dev
+      - dpkg-dev
+      - libatk1.0-dev
+      - libgtk2.0-dev
+    stage-packages:
+      - libxkbcommon0
+      - ttf-ubuntu-font-family
+      - dmz-cursor-theme
+      - light-themes
+      - shared-mime-info
+      - libqt5gui5
+      - libgdk-pixbuf2.0-0
+      - libqt5svg5 # for loading icon themes which are svg
+      - libc6
+      - locales-all
+
   kaffeine-player:
+    after: [desktop-qt5-kaffeine]
     source: .
     source-type: git
     plugin: cmake
-    after: [desktop-qt5]
     build-packages:
       - cmake
       - extra-cmake-modules
@@ -56,24 +79,57 @@ parts:
       - libxss-dev
       - make
       - qt5-default
-
-  desktop-qt5:
     stage-packages:
-      - libxkbcommon0
-      - ttf-ubuntu-font-family
-      - dmz-cursor-theme
-      - light-themes
-      - shared-mime-info
+      - fonts-freefont-ttf
+      - dbus-x11
+      - libaa1
+      - libcaca0
+      - libcairo2
+      - libegl1-mesa
+      - libfreerdp-client1.1
+      - libfreerdp-core1.1
+      - libfreerdp-gdi1.1
+      - libfreetype6
+      - libfribidi0
+      - libgcc1
+      - libgl1-mesa-glx
+      - libgles2-mesa
+      - libglib2.0-0
+      - libpulse0
+      - libqt5core5a
       - libqt5gui5
-      - libgdk-pixbuf2.0-0
-      - libqt5svg5 # for loading icon themes which are svg
-      - locales-all
-      - libc6
+      - librsvg2-2
+      - libsdl-image1.2
+      - libsdl1.2debian
+      - libsecret-1-0
+      - libvncclient1
+      - libx11-6
+      - libxcb-composite0
+      - libxcb-keysyms1
+      - libxcb-randr0
+      - libxcb-shm0
+      - libxcb-xv0
+      - libxcb1
+      - libxext6
+      - libxi6
+      - libxinerama1
+      - libxpm4
+      - vdpau-va-driver
+      - i965-va-driver
+      - mesa-utils
+      - mesa-vdpau-drivers
       - zlib1g
-      - locales-all
-
-
-  gnu-bash:
-    source: http://ftp.gnu.org/gnu/bash/bash-4.3.tar.gz
-    plugin: autotools
-    configflags: ["--infodir=/var/bash/info"]
+      - libprojectm2v5
+      - projectm-data
+      - kde-style-breeze
+      - breeze-icon-theme
+      - frameworkintegration
+      - plasma-integration
+      - phonon4qt5-backend-null
+      - libxcomposite1
+      - libxrandr2
+      - try:
+        - libva-x11-1
+        - libva1
+        - libvdpau1
+        - libva-drm1
