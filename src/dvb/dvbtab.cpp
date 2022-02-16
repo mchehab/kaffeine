@@ -427,7 +427,7 @@ void DvbTab::toggleEpgDialog()
 		epgDialog->show();
 	} else {
 		epgDialog->deleteLater();
-		epgDialog = NULL;
+		epgDialog = nullptr;
 	}
 }
 
@@ -594,7 +594,7 @@ void DvbTab::playChannel(const DvbSharedChannel &channel, const QModelIndex &ind
 }
 
 DvbSharedRecording *DvbTab::getInstantRecording(DvbSharedChannel ch) {
-	DvbSharedRecording *ret = NULL;
+	DvbSharedRecording *ret = nullptr;
 
 	QListIterator<DvbSharedRecording> i(instantRecordings);
 	while (i.hasNext()) {

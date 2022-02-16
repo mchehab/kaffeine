@@ -44,7 +44,7 @@ static const char *enumToLinuxtv(DvbTransponderBase::FecRate fecRate)
 	case DvbTransponderBase::FecAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbCTransponder::Modulation modulation)
@@ -58,7 +58,7 @@ static const char *enumToLinuxtv(DvbCTransponder::Modulation modulation)
 	case DvbCTransponder::ModulationAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbSTransponder::Polarization polarization)
@@ -71,7 +71,7 @@ static const char *enumToLinuxtv(DvbSTransponder::Polarization polarization)
 	case DvbSTransponder::Off: return "-";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbS2Transponder::Modulation modulation)
@@ -84,7 +84,7 @@ static const char *enumToLinuxtv(DvbS2Transponder::Modulation modulation)
 	case DvbS2Transponder::ModulationAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbS2Transponder::RollOff rollOff)
@@ -96,7 +96,7 @@ static const char *enumToLinuxtv(DvbS2Transponder::RollOff rollOff)
 	case DvbS2Transponder::RollOffAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbTTransponder::Bandwidth bandwidth)
@@ -109,7 +109,7 @@ static const char *enumToLinuxtv(DvbTTransponder::Bandwidth bandwidth)
 	case DvbTTransponder::BandwidthAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbTTransponder::Modulation modulation)
@@ -121,7 +121,7 @@ static const char *enumToLinuxtv(DvbTTransponder::Modulation modulation)
 	case DvbTTransponder::ModulationAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbTTransponder::TransmissionMode transmissionMode)
@@ -133,7 +133,7 @@ static const char *enumToLinuxtv(DvbTTransponder::TransmissionMode transmissionM
 	case DvbTTransponder::TransmissionModeAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbTTransponder::GuardInterval guardInterval)
@@ -146,7 +146,7 @@ static const char *enumToLinuxtv(DvbTTransponder::GuardInterval guardInterval)
 	case DvbTTransponder::GuardIntervalAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbTTransponder::Hierarchy hierarchy)
@@ -159,7 +159,7 @@ static const char *enumToLinuxtv(DvbTTransponder::Hierarchy hierarchy)
 	case DvbTTransponder::HierarchyAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbT2Transponder::Bandwidth bandwidth)
@@ -174,7 +174,7 @@ static const char *enumToLinuxtv(DvbT2Transponder::Bandwidth bandwidth)
 	case DvbT2Transponder::BandwidthAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbT2Transponder::Modulation modulation)
@@ -187,7 +187,7 @@ static const char *enumToLinuxtv(DvbT2Transponder::Modulation modulation)
 	case DvbT2Transponder::ModulationAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbT2Transponder::TransmissionMode transmissionMode)
@@ -202,7 +202,7 @@ static const char *enumToLinuxtv(DvbT2Transponder::TransmissionMode transmission
 	case DvbT2Transponder::TransmissionModeAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbT2Transponder::GuardInterval guardInterval)
@@ -218,7 +218,7 @@ static const char *enumToLinuxtv(DvbT2Transponder::GuardInterval guardInterval)
 	case DvbT2Transponder::GuardIntervalAuto:	return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(DvbT2Transponder::Hierarchy hierarchy)
@@ -231,7 +231,7 @@ static const char *enumToLinuxtv(DvbT2Transponder::Hierarchy hierarchy)
 	case DvbT2Transponder::HierarchyAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(IsdbTTransponder::Bandwidth bandwidth)
@@ -242,7 +242,7 @@ static const char *enumToLinuxtv(IsdbTTransponder::Bandwidth bandwidth)
 	case IsdbTTransponder::Bandwidth8MHz: return "8MHz";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(IsdbTTransponder::Modulation modulation)
@@ -255,7 +255,7 @@ static const char *enumToLinuxtv(IsdbTTransponder::Modulation modulation)
 	case IsdbTTransponder::ModulationAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(IsdbTTransponder::TransmissionMode transmissionMode)
@@ -267,7 +267,7 @@ static const char *enumToLinuxtv(IsdbTTransponder::TransmissionMode transmission
 	case IsdbTTransponder::TransmissionModeAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(IsdbTTransponder::GuardInterval guardInterval)
@@ -280,7 +280,7 @@ static const char *enumToLinuxtv(IsdbTTransponder::GuardInterval guardInterval)
 	case IsdbTTransponder::GuardIntervalAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(IsdbTTransponder::Interleaving interleaving)
@@ -295,7 +295,7 @@ static const char *enumToLinuxtv(IsdbTTransponder::Interleaving interleaving)
 	case IsdbTTransponder::I_AUTO: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(IsdbTTransponder::PartialReception partialReception)
@@ -306,7 +306,7 @@ static const char *enumToLinuxtv(IsdbTTransponder::PartialReception partialRecep
 	case IsdbTTransponder::PR_AUTO: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(IsdbTTransponder::SoundBroadcasting soundBroadcasting)
@@ -317,7 +317,7 @@ static const char *enumToLinuxtv(IsdbTTransponder::SoundBroadcasting soundBroadc
 	case IsdbTTransponder::SB_AUTO: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static const char *enumToLinuxtv(AtscTransponder::Modulation modulation)
@@ -330,7 +330,7 @@ static const char *enumToLinuxtv(AtscTransponder::Modulation modulation)
 	case AtscTransponder::ModulationAuto: return "AUTO";
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 template<class T> static T readEnum(QDataStream &stream)
@@ -339,7 +339,7 @@ template<class T> static T readEnum(QDataStream &stream)
 	stream >> intValue;
 	T value = static_cast<T>(intValue);
 
-	if ((value != intValue) || (enumToLinuxtv(value) == NULL)) {
+	if ((value != intValue) || (enumToLinuxtv(value) == nullptr)) {
 		stream.setStatus(QDataStream::ReadCorruptData);
 	}
 
@@ -381,7 +381,7 @@ public:
 
 			const char *entry = enumToLinuxtv(value);
 
-			if (entry == NULL) {
+			if (entry == nullptr) {
 				break;
 			}
 
@@ -494,7 +494,7 @@ bool DvbCTransponder::corresponds(const DvbTransponder &transponder) const
 {
 	const DvbCTransponder *dvbCTransponder = transponder.as<DvbCTransponder>();
 
-	return ((dvbCTransponder != NULL) &&
+	return ((dvbCTransponder != nullptr) &&
 		(qAbs(dvbCTransponder->frequency - frequency) <= 2000000));
 }
 
@@ -532,7 +532,7 @@ bool DvbSTransponder::corresponds(const DvbTransponder &transponder) const
 {
 	const DvbSTransponder *dvbSTransponder = transponder.as<DvbSTransponder>();
 
-	return ((dvbSTransponder != NULL) &&
+	return ((dvbSTransponder != nullptr) &&
 		(dvbSTransponder->polarization == polarization) &&
 		(qAbs(dvbSTransponder->frequency - frequency) <= 2000));
 }
@@ -577,7 +577,7 @@ bool DvbS2Transponder::corresponds(const DvbTransponder &transponder) const
 {
 	const DvbS2Transponder *dvbS2Transponder = transponder.as<DvbS2Transponder>();
 
-	return ((dvbS2Transponder != NULL) &&
+	return ((dvbS2Transponder != nullptr) &&
 		(dvbS2Transponder->polarization == polarization) &&
 		(qAbs(dvbS2Transponder->frequency - frequency) <= 2000));
 }
@@ -628,7 +628,7 @@ bool DvbTTransponder::corresponds(const DvbTransponder &transponder) const
 {
 	const DvbTTransponder *dvbTTransponder = transponder.as<DvbTTransponder>();
 
-	return ((dvbTTransponder != NULL) &&
+	return ((dvbTTransponder != nullptr) &&
 		(qAbs(dvbTTransponder->frequency - frequency) <= 2000000));
 }
 
@@ -681,7 +681,7 @@ bool DvbT2Transponder::corresponds(const DvbTransponder &transponder) const
 {
 	const DvbT2Transponder *dvbT2Transponder = transponder.as<DvbT2Transponder>();
 
-	return ((dvbT2Transponder != NULL) &&
+	return ((dvbT2Transponder != nullptr) &&
 		(qAbs(dvbT2Transponder->frequency - frequency) <= 2000000) &&
 		(dvbT2Transponder->streamId == streamId));
 }
@@ -714,7 +714,7 @@ bool AtscTransponder::corresponds(const DvbTransponder &transponder) const
 {
 	const AtscTransponder *atscTransponder = transponder.as<AtscTransponder>();
 
-	return ((atscTransponder != NULL) &&
+	return ((atscTransponder != nullptr) &&
 		(qAbs(atscTransponder->frequency - frequency) <= 2000000));
 }
 
@@ -835,7 +835,7 @@ bool IsdbTTransponder::corresponds(const DvbTransponder &transponder) const
 {
 	const IsdbTTransponder *dvbTTransponder = transponder.as<IsdbTTransponder>();
 
-	return ((dvbTTransponder != NULL) &&
+	return ((dvbTTransponder != nullptr) &&
 		(qAbs(dvbTTransponder->frequency - frequency) <= 2000000));
 }
 

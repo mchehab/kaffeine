@@ -39,7 +39,7 @@
 #include "xmltv.h"
 
 DvbManager::DvbManager(MediaWidget *mediaWidget_, QWidget *parent_) : QObject(parent_),
-	parent(parent_), mediaWidget(mediaWidget_), channelView(NULL), dvbDumpEnabled(false)
+	parent(parent_), mediaWidget(mediaWidget_), channelView(nullptr), dvbDumpEnabled(false)
 {
 	channelModel = DvbChannelModel::createSqlModel(this);
 	recordingModel = new DvbRecordingModel(this, this);
@@ -68,7 +68,7 @@ DvbManager::~DvbManager()
 
 	delete xmlTv;
 	delete epgModel;
-	epgModel = NULL;
+	epgModel = nullptr;
 	delete recordingModel;
 
 	foreach (const DvbDeviceConfig &deviceConfig, deviceConfigs) {
@@ -86,7 +86,7 @@ DvbDevice *DvbManager::requestDevice(const QString &source, const DvbTransponder
 	for (int i = 0; i < deviceConfigs.size(); ++i) {
 		const DvbDeviceConfig &it = deviceConfigs.at(i);
 
-		if ((it.device == NULL) || (it.useCount < 1)) {
+		if ((it.device == nullptr) || (it.useCount < 1)) {
 			continue;
 		}
 
@@ -104,7 +104,7 @@ DvbDevice *DvbManager::requestDevice(const QString &source, const DvbTransponder
 	for (int i = 0; i < deviceConfigs.size(); ++i) {
 		const DvbDeviceConfig &it = deviceConfigs.at(i);
 
-		if ((it.device == NULL) || (it.useCount != 0)) {
+		if ((it.device == nullptr) || (it.useCount != 0)) {
 			continue;
 		}
 
@@ -131,13 +131,13 @@ DvbDevice *DvbManager::requestDevice(const QString &source, const DvbTransponder
 	}
 
 	if (requestType != Prioritized) {
-		return NULL;
+		return nullptr;
 	}
 
 	for (int i = 0; i < deviceConfigs.size(); ++i) {
 		const DvbDeviceConfig &it = deviceConfigs.at(i);
 
-		if ((it.device == NULL) || (it.useCount == 0) || (it.prioritizedUseCount != 0)) {
+		if ((it.device == nullptr) || (it.useCount == 0) || (it.prioritizedUseCount != 0)) {
 			continue;
 		}
 
@@ -157,7 +157,7 @@ DvbDevice *DvbManager::requestDevice(const QString &source, const DvbTransponder
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 DvbDevice *DvbManager::requestExclusiveDevice(const QString &source)
@@ -165,7 +165,7 @@ DvbDevice *DvbManager::requestExclusiveDevice(const QString &source)
 	for (int i = 0; i < deviceConfigs.size(); ++i) {
 		const DvbDeviceConfig &it = deviceConfigs.at(i);
 
-		if ((it.device == NULL) || (it.useCount != 0)) {
+		if ((it.device == nullptr) || (it.useCount != 0)) {
 			continue;
 		}
 
@@ -184,7 +184,7 @@ DvbDevice *DvbManager::requestExclusiveDevice(const QString &source)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 void DvbManager::releaseDevice(DvbDevice *device, RequestType requestType)
@@ -246,7 +246,7 @@ void DvbManager::updateDeviceConfigs(const QList<DvbDeviceConfigUpdate> &configU
 	}
 
 	for (int i = configUpdates.size(); i < deviceConfigs.size(); ++i) {
-		if (deviceConfigs.at(i).device != NULL) {
+		if (deviceConfigs.at(i).device != nullptr) {
 			deviceConfigs[i].configs.clear();
 		} else {
 			deviceConfigs.removeAt(i);
@@ -537,7 +537,7 @@ void DvbManager::enableDvbDump()
 	dvbDumpEnabled = true;
 
 	foreach (const DvbDeviceConfig &deviceConfig, deviceConfigs) {
-		if (deviceConfig.device != NULL) {
+		if (deviceConfig.device != nullptr) {
 			deviceConfig.device->enableDvbDump();
 		}
 	}
@@ -567,7 +567,7 @@ void DvbManager::deviceAdded(DvbBackendDevice *backendDevice)
 		const DvbDeviceConfig &it = deviceConfigs.at(i);
 
 		if ((it.deviceId.isEmpty() || deviceId.isEmpty() || (it.deviceId == deviceId)) &&
-		    (it.frontendName == frontendName) && (it.device == NULL)) {
+		    (it.frontendName == frontendName) && (it.device == nullptr)) {
 			deviceConfigs[i].device = device;
 			break;
 		}
@@ -587,7 +587,7 @@ void DvbManager::deviceRemoved(DvbBackendDevice *backendDevice)
 			}
 
 			delete it.device;
-			it.device = NULL;
+			it.device = nullptr;
 			break;
 		}
 	}
@@ -608,7 +608,7 @@ void DvbManager::loadDeviceManager()
 
 		QObject *deviceManager = QPluginLoader(path).instance();
 
-		if (deviceManager == NULL) {
+		if (deviceManager == nullptr) {
 			qCWarning(logDvb, "Cannot load dvb device manager %s", qPrintable(path));
 			break;
 		}
@@ -660,7 +660,7 @@ void DvbManager::readDeviceConfigs()
 			break;
 		}
 
-		DvbDeviceConfig deviceConfig(deviceId, frontendName, NULL);
+		DvbDeviceConfig deviceConfig(deviceId, frontendName, nullptr);
 
 		for (int i = 0; i < configCount; ++i) {
 			while (!reader.atEnd()) {

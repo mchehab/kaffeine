@@ -740,7 +740,7 @@ bool DvbRecordingModel::updateStatus(DvbRecording &recording)
 		QExplicitlySharedDataPointer<DvbRecordingFile> recordingFile =
 			recordingFiles.value(recording);
 
-		if (recordingFile.constData() == NULL) {
+		if (recordingFile.constData() == nullptr) {
 			recordingFile = new DvbRecordingFile(manager);
 			recordingFiles.insert(recording, recordingFile);
 		}
@@ -758,7 +758,7 @@ bool DvbRecordingModel::updateStatus(DvbRecording &recording)
 	return true;
 }
 
-DvbRecordingFile::DvbRecordingFile(DvbManager *manager_) : manager(manager_), device(NULL),
+DvbRecordingFile::DvbRecordingFile(DvbManager *manager_) : manager(manager_), device(nullptr),
 	pmtValid(false)
 {
 	connect(&pmtFilter, SIGNAL(pmtSectionChanged(QByteArray)),
@@ -874,12 +874,12 @@ bool DvbRecordingFile::start(DvbRecording &recording)
 		}
 	}
 
-	if (device == NULL) {
+	if (device == nullptr) {
 		channel = recording.channel;
 		device = manager->requestDevice(channel->source, channel->transponder,
 			DvbManager::Prioritized);
 
-		if (device == NULL) {
+		if (device == nullptr) {
 			qCWarning(logDvb, "Cannot find a suitable device");
 			return false;
 		}
@@ -910,7 +910,7 @@ bool DvbRecordingFile::start(DvbRecording &recording)
 
 void DvbRecordingFile::stop()
 {
-	if (device != NULL) {
+	if (device != nullptr) {
 		if (channel->isScrambled && !pmtSectionData.isEmpty()) {
 			device->stopDescrambling(pmtSectionData, this);
 		}
@@ -922,7 +922,7 @@ void DvbRecordingFile::stop()
 		device->removeSectionFilter(channel->pmtPid, &pmtFilter);
 		disconnect(device, SIGNAL(stateChanged()), this, SLOT(deviceStateChanged()));
 		manager->releaseDevice(device, DvbManager::Prioritized);
-		device = NULL;
+		device = nullptr;
 	}
 
 	pmtValid = false;
@@ -958,7 +958,7 @@ void DvbRecordingFile::deviceStateChanged()
 		device = manager->requestDevice(channel->source, channel->transponder,
 			DvbManager::Prioritized);
 
-		if (device != NULL) {
+		if (device != nullptr) {
 			connect(device, SIGNAL(stateChanged()), this, SLOT(deviceStateChanged()));
 			device->addSectionFilter(channel->pmtPid, &pmtFilter);
 

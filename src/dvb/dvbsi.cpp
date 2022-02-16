@@ -311,8 +311,8 @@ QString DvbSiText::convertText(const char *data, int size)
 		size--;
 	}
 
-	if (codecTable[encoding] == NULL) {
-		QTextCodec *codec = NULL;
+	if (codecTable[encoding] == nullptr) {
+		QTextCodec *codec = nullptr;
 
 		switch (encoding) {
 		case Iso6937: codec = new Iso6937Codec(); break;
@@ -337,7 +337,7 @@ QString DvbSiText::convertText(const char *data, int size)
 		case Utf_8: codec = QTextCodec::codecForName("UTF-8"); break;
 		}
 
-		Q_ASSERT(codec != NULL);
+		Q_ASSERT(codec != nullptr);
 		codecTable[encoding] = codec;
 	}
 
@@ -369,7 +369,7 @@ void DvbSiText::setOverride6937(bool override)
 	override6937 = override;
 }
 
-QTextCodec *DvbSiText::codecTable[EncodingTypeMax + 1] = { NULL };
+QTextCodec *DvbSiText::codecTable[EncodingTypeMax + 1] = { nullptr };
 bool DvbSiText::override6937 = false;
 
 void DvbDescriptor::initDescriptor(const char *data, int size)

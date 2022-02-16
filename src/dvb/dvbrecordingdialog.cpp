@@ -218,7 +218,7 @@ bool DvbRecordingLessThan::operator()(const DvbSharedRecording &x,
 }
 
 DvbRecordingTableModel::DvbRecordingTableModel(QObject *parent) :
-	TableModel<DvbRecordingTableModelHelper>(parent), recordingModel(NULL)
+	TableModel<DvbRecordingTableModelHelper>(parent), recordingModel(nullptr)
 {
 }
 
@@ -228,7 +228,7 @@ DvbRecordingTableModel::~DvbRecordingTableModel()
 
 void DvbRecordingTableModel::setRecordingModel(DvbRecordingModel *recordingModel_)
 {
-	if (recordingModel != NULL) {
+	if (recordingModel != nullptr) {
 		qCWarning(logDvb, "Recording model already set");
 		return;
 	}

@@ -72,7 +72,7 @@ bool DvbChannelLessThan::operator()(const DvbSharedChannel &x, const DvbSharedCh
 }
 
 DvbChannelTableModel::DvbChannelTableModel(QObject *parent) :
-	TableModel<DvbChannelTableModelHelper>(parent), channelModel(NULL),
+	TableModel<DvbChannelTableModelHelper>(parent), channelModel(nullptr),
 	dndInsertBeforeNumber(-1), dndEventPosted(false)
 {
 }
@@ -83,7 +83,7 @@ DvbChannelTableModel::~DvbChannelTableModel()
 
 void DvbChannelTableModel::setChannelModel(DvbChannelModel *channelModel_)
 {
-	if (channelModel != NULL) {
+	if (channelModel != nullptr) {
 		qCWarning(logDvb, "Channel model already set");
 		return;
 	}
@@ -279,7 +279,7 @@ void DvbChannelTableModel::customEvent(QEvent *event)
 	dndEventPosted = false;
 }
 
-DvbChannelView::DvbChannelView(QWidget *parent) : QTreeView(parent), tableModel(NULL)
+DvbChannelView::DvbChannelView(QWidget *parent) : QTreeView(parent), tableModel(nullptr)
 {
 }
 
@@ -712,7 +712,7 @@ DvbChannelEditor::DvbChannelEditor(DvbChannelTableModel *model_, const DvbShared
 	QBoxLayout *mainLayout = new QVBoxLayout(widget);
 	QGridLayout *gridLayout = new QGridLayout();
 
-	audioStreamBox = NULL;
+	audioStreamBox = nullptr;
 
 	nameEdit = new QLineEdit(widget);
 	nameEdit->setText(channel->name);
@@ -762,7 +762,7 @@ DvbChannelEditor::DvbChannelEditor(DvbChannelTableModel *model_, const DvbShared
 		const DvbS2Transponder *tp2 = channel->transponder.as<DvbS2Transponder>();
 		const DvbSTransponder *tp = channel->transponder.as<DvbSTransponder>();
 
-		if (tp == NULL) {
+		if (tp == nullptr) {
 			tp = tp2;
 		}
 
@@ -775,7 +775,7 @@ DvbChannelEditor::DvbChannelEditor(DvbChannelTableModel *model_, const DvbShared
 		gridLayout->addWidget(new QLabel(i18n("FEC rate:")), 4, 0);
 		gridLayout->addWidget(new QLabel(enumToString(tp->fecRate)), 4, 1);
 
-		if (tp2 != NULL) {
+		if (tp2 != nullptr) {
 			gridLayout->addWidget(new QLabel(i18n("Modulation:")), 5, 0);
 			gridLayout->addWidget(new QLabel(enumToString(tp2->modulation)), 5, 1);
 			gridLayout->addWidget(new QLabel(i18n("Roll-off:")), 6, 0);
