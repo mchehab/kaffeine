@@ -397,7 +397,7 @@ bool DvbEpgTableModelHelper::filterAcceptsItem(const DvbSharedEpgEntry &entry) c
 }
 
 DvbEpgTableModel::DvbEpgTableModel(QObject *parent) : TableModel<DvbEpgTableModelHelper>(parent),
-	epgModel(NULL), contentFilterEventPending(false)
+	epgModel(nullptr), contentFilterEventPending(false)
 {
 	helper.contentFilter.setCaseSensitivity(Qt::CaseInsensitive);
 }
@@ -408,7 +408,7 @@ DvbEpgTableModel::~DvbEpgTableModel()
 
 void DvbEpgTableModel::setEpgModel(DvbEpgModel *epgModel_)
 {
-	if (epgModel != NULL) {
+	if (epgModel != nullptr) {
 		qCWarning(logEpg, "EPG model already set");
 		return;
 	}

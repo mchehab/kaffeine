@@ -250,8 +250,8 @@ void DvbDataDumper::processData(const char data[188])
 }
 
 DvbDevice::DvbDevice(DvbBackendDevice *backend_, QObject *parent) : QObject(parent),
-	backend(backend_), deviceState(DeviceReleased), dataDumper(NULL), cleanUpFilters(false),
-	isAuto(false), unusedBuffersHead(NULL), usedBuffersHead(NULL), usedBuffersTail(NULL)
+	backend(backend_), deviceState(DeviceReleased), dataDumper(nullptr), cleanUpFilters(false),
+	isAuto(false), unusedBuffersHead(nullptr), usedBuffersHead(nullptr), usedBuffersTail(nullptr)
 {
 	backend->setFrontendDevice(this);
 	backend->setDeviceEnabled(true); // FIXME
@@ -263,13 +263,13 @@ DvbDevice::~DvbDevice()
 {
 	backend->release();
 
-	for (DvbDeviceDataBuffer *buffer = unusedBuffersHead; buffer != NULL;) {
+	for (DvbDeviceDataBuffer *buffer = unusedBuffersHead; buffer != nullptr;) {
 		DvbDeviceDataBuffer *nextBuffer = buffer->next;
 		delete buffer;
 		buffer = nextBuffer;
 	}
 
-	for (DvbDeviceDataBuffer *buffer = usedBuffersHead; buffer != NULL;) {
+	for (DvbDeviceDataBuffer *buffer = usedBuffersHead; buffer != nullptr;) {
 		DvbDeviceDataBuffer *nextBuffer = buffer->next;
 		delete buffer;
 		buffer = nextBuffer;
@@ -463,7 +463,7 @@ bool DvbDevice::addPidFilter(int pid, DvbPidFilter *filter)
 	if (it == filters.end()) {
 		it = filters.insert(pid, DvbFilterInternal());
 
-		if (dataDumper != NULL) {
+		if (dataDumper != nullptr) {
 			it->filters.append(dataDumper);
 		}
 	}
@@ -662,7 +662,7 @@ void DvbDevice::release()
 
 void DvbDevice::enableDvbDump()
 {
-	if (dataDumper != NULL) {
+	if (dataDumper != nullptr) {
 		return;
 	}
 
@@ -843,12 +843,12 @@ void DvbDevice::discardBuffers()
 {
 	dataChannelMutex.lock();
 
-	if (usedBuffersHead != NULL) {
+	if (usedBuffersHead != nullptr) {
 		usedBuffersHead->size = 0;
 		DvbDeviceDataBuffer *nextBuffer = usedBuffersHead->next;
-		usedBuffersHead->next = NULL;
+		usedBuffersHead->next = nullptr;
 
-		if (nextBuffer != NULL) {
+		if (nextBuffer != nullptr) {
 			nextBuffer->next = unusedBuffersHead;
 			unusedBuffersHead = nextBuffer;
 		}
@@ -890,7 +890,7 @@ DvbDataBuffer DvbDevice::getBuffer()
 	dataChannelMutex.lock();
 	DvbDeviceDataBuffer *buffer = unusedBuffersHead;
 
-	if (buffer != NULL) {
+	if (buffer != nullptr) {
 		unusedBuffersHead = buffer->next;
 		dataChannelMutex.unlock();
 	} else {
@@ -911,7 +911,7 @@ void DvbDevice::writeBuffer(const DvbDataBuffer &dataBuffer)
 		dataChannelMutex.lock();
 		bool wakeUp = false;
 
-		if (usedBuffersHead != NULL) {
+		if (usedBuffersHead != nullptr) {
 			usedBuffersTail->next = buffer;
 		} else {
 			usedBuffersHead = buffer;
@@ -919,7 +919,7 @@ void DvbDevice::writeBuffer(const DvbDataBuffer &dataBuffer)
 		}
 
 		usedBuffersTail = buffer;
-		usedBuffersTail->next = NULL;
+		usedBuffersTail->next = nullptr;
 		dataChannelMutex.unlock();
 
 		if (wakeUp) {
@@ -967,12 +967,12 @@ void DvbDevice::customEvent(QEvent *)
 		}
 	}
 
-	DvbDeviceDataBuffer *buffer = NULL;
+	DvbDeviceDataBuffer *buffer = nullptr;
 
 	while (true) {
 		dataChannelMutex.lock();
 
-		if (buffer != NULL) {
+		if (buffer != nullptr) {
 			usedBuffersHead = buffer->next;
 			buffer->next = unusedBuffersHead;
 			unusedBuffersHead = buffer;
@@ -981,7 +981,7 @@ void DvbDevice::customEvent(QEvent *)
 		buffer = usedBuffersHead;
 		dataChannelMutex.unlock();
 
-		if (buffer == NULL) {
+		if (buffer == nullptr) {
 			break;
 		}
 

@@ -709,7 +709,7 @@ void DvbScanFileDownloadDialog::jobFinished()
 
 DvbConfigPage::DvbConfigPage(QWidget *parent, DvbManager *manager,
 	const DvbDeviceConfig *deviceConfig_) : QWidget(parent), deviceConfig(deviceConfig_),
-	dvbSObject(NULL)
+	dvbSObject(nullptr)
 {
 	boxLayout = new QVBoxLayout(this);
 	boxLayout->addWidget(new QLabel(i18n("Name: %1", deviceConfig->frontendName)));
@@ -719,7 +719,7 @@ DvbConfigPage::DvbConfigPage(QWidget *parent, DvbManager *manager,
 	connect(moveLeftButton, SIGNAL(clicked()), this, SLOT(moveLeft()));
 	horizontalLayout->addWidget(moveLeftButton);
 
-	if (deviceConfig->device != NULL) {
+	if (deviceConfig->device != nullptr) {
 		QPushButton *pushButton = new QPushButton(QIcon::fromTheme(QLatin1String("edit-undo"), QIcon(":edit-undo")), i18n("Reset"), this);
 		connect(pushButton, SIGNAL(clicked()), this, SIGNAL(resetConfig()));
 		horizontalLayout->addWidget(pushButton);
@@ -735,7 +735,7 @@ DvbConfigPage::DvbConfigPage(QWidget *parent, DvbManager *manager,
 	horizontalLayout->addWidget(moveRightButton);
 	boxLayout->addLayout(horizontalLayout);
 
-	if (deviceConfig->device == NULL) {
+	if (deviceConfig->device == nullptr) {
 		addHSeparator(i18n("Device not connected."));
 		boxLayout->addStretch();
 		configs = deviceConfig->configs;
@@ -774,7 +774,7 @@ DvbConfigPage::DvbConfigPage(QWidget *parent, DvbManager *manager,
 	if ((transmissionTypes & DvbDevice::DvbC) != 0) {
 		addHSeparator(i18n("DVB-C"));
 
-		if (dvbCConfig.constData() == NULL) {
+		if (dvbCConfig.constData() == nullptr) {
 			DvbConfigBase *config = new DvbConfigBase(DvbConfigBase::DvbC);
 			config->timeout = 1500;
 			dvbCConfig = DvbConfig(config);
@@ -805,7 +805,7 @@ DvbConfigPage::DvbConfigPage(QWidget *parent, DvbManager *manager,
 			addHSeparator(i18n("DVB-T"));
 		}
 
-		if (dvbTConfig.constData() == NULL) {
+		if (dvbTConfig.constData() == nullptr) {
 			DvbConfigBase *config = new DvbConfigBase(DvbConfigBase::DvbT);
 			config->timeout = 1500;
 			dvbTConfig = DvbConfig(config);
@@ -818,7 +818,7 @@ DvbConfigPage::DvbConfigPage(QWidget *parent, DvbManager *manager,
 	if ((transmissionTypes & DvbDevice::Atsc) != 0) {
 		addHSeparator(i18n("ATSC"));
 
-		if (atscConfig.constData() == NULL) {
+		if (atscConfig.constData() == nullptr) {
 			DvbConfigBase *config = new DvbConfigBase(DvbConfigBase::Atsc);
 			config->timeout = 1500;
 			atscConfig = DvbConfig(config);
@@ -831,7 +831,7 @@ DvbConfigPage::DvbConfigPage(QWidget *parent, DvbManager *manager,
 	if ((transmissionTypes & DvbDevice::IsdbT) != 0) {
 		addHSeparator(i18n("ISDB-T"));
 
-		if (isdbTConfig.constData() == NULL) {
+		if (isdbTConfig.constData() == nullptr) {
 			DvbConfigBase *config = new DvbConfigBase(DvbConfigBase::IsdbT);
 			config->timeout = 1500;
 			isdbTConfig = DvbConfig(config);
@@ -865,7 +865,7 @@ const DvbDeviceConfig *DvbConfigPage::getDeviceConfig() const
 
 QList<DvbConfig> DvbConfigPage::getConfigs()
 {
-	if (dvbSObject != NULL) {
+	if (dvbSObject != nullptr) {
 		dvbSObject->appendConfigs(configs);
 	}
 
@@ -1173,7 +1173,7 @@ DvbSConfigObject::DvbSConfigObject(QWidget *parent_, QBoxLayout *boxLayout, DvbM
 		&QPushButton::setVisible);
 	layout->addWidget(pushButton, 7, 0);
 
-	lnbConfigs.append(new DvbSLnbConfigObject(timeoutBox, higherVoltageBox, NULL, pushButton, lnbConfig, device));
+	lnbConfigs.append(new DvbSLnbConfigObject(timeoutBox, higherVoltageBox, nullptr, pushButton, lnbConfig, device));
 
 	sourceBox = new QComboBox(parent);
 	sourceBox->addItems(sources);
@@ -1376,7 +1376,7 @@ void DvbSConfigObject::appendConfigs(QList<DvbConfig> &list)
 		for (int i = 0;; ++i) {
 			QTreeWidgetItem *item = satelliteView->topLevelItem(i);
 
-			if (item == NULL) {
+			if (item == nullptr) {
 				break;
 			}
 
@@ -1522,7 +1522,7 @@ DvbSLnbConfigObject::DvbSLnbConfigObject(QSpinBox *timeoutSpinBox,
 	connect(higherVoltageBox, SIGNAL(stateChanged(int)), this, SLOT(higherVoltageChanged(int)));
 	connect(configureButton, SIGNAL(clicked()), this, SLOT(configure()));
 
-	if (sourceBox != NULL) {
+	if (sourceBox != nullptr) {
 		connect(sourceBox, SIGNAL(currentIndexChanged(int)),
 			this, SLOT(sourceChanged(int)));
 		sourceChanged(sourceBox->currentIndex());
@@ -1540,7 +1540,7 @@ void DvbSLnbConfigObject::resetConfig()
 	config->currentLnb = device->getLnbSatModels().at(0);
 	config->bpf = 0;
 
-	if (sourceBox != NULL) {
+	if (sourceBox != nullptr) {
 		sourceBox->setCurrentIndex(0);
 	}
 }

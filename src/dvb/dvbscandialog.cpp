@@ -243,7 +243,7 @@ QVariant DvbPreviewChannelTableModel::headerData(int section, Qt::Orientation or
 }
 
 DvbScanDialog::DvbScanDialog(DvbManager *manager_, QWidget *parent) : QDialog(parent),
-	manager(manager_), internal(NULL)
+	manager(manager_), internal(nullptr)
 {
 	setWindowTitle(i18n("Channels"));
 
@@ -387,7 +387,7 @@ DvbScanDialog::DvbScanDialog(DvbManager *manager_, QWidget *parent) : QDialog(pa
 
 	setDevice(manager->getLiveView()->getDevice());
 
-	if (device != NULL) {
+	if (device != nullptr) {
 		sourceBox->addItem(i18n("Current Transponder"));
 		sourceBox->setEnabled(false);
 		isLive = true;
@@ -423,23 +423,23 @@ void DvbScanDialog::scanButtonClicked(bool checked)
 {
 	if (!checked) {
 		// stop scan
-		Q_ASSERT(internal != NULL);
+		Q_ASSERT(internal != nullptr);
 		scanButton->setText(i18n("Start Scan"));
 		progressBar->setValue(0);
 
 		delete internal;
-		internal = NULL;
+		internal = nullptr;
 
 		if (!isLive) {
 			manager->releaseDevice(device, DvbManager::Exclusive);
-			setDevice(NULL);
+			setDevice(nullptr);
 		}
 
 		return;
 	}
 
 	// start scan
-	Q_ASSERT(internal == NULL);
+	Q_ASSERT(internal == nullptr);
 
 	if (!manager->getLiveView()->getChannel().isValid()) {
 		isLive = false; // FIXME workaround
@@ -452,7 +452,7 @@ void DvbScanDialog::scanButtonClicked(bool checked)
 		QString source = sourceBox->currentText();
 		setDevice(manager->requestExclusiveDevice(source));
 
-		if (device != NULL) {
+		if (device != nullptr) {
 			// FIXME ugly
 			QString autoScanSource = manager->getAutoScanSource(source);
 
@@ -599,7 +599,7 @@ void DvbScanDialog::setDevice(DvbDevice *newDevice)
 {
 	device = newDevice;
 
-	if (device == NULL) {
+	if (device == nullptr) {
 		statusTimer.stop();
 		signalWidget->setValue(0, DvbBackendDevice::NotSupported);
 		snrWidget->setValue(0, DvbBackendDevice::NotSupported);

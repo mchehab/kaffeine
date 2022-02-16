@@ -47,8 +47,8 @@ extern "C" {
 
 // krazy:excludeall=syscalls
 
-DvbLinuxDevice::DvbLinuxDevice(QObject *parent) : QThread(parent), ready(false), frontend(NULL),
-	enabled(false), dvrFd(-1), dvrBuffer(NULL, 0), cam(parent)
+DvbLinuxDevice::DvbLinuxDevice(QObject *parent) : QThread(parent), ready(false), frontend(nullptr),
+	enabled(false), dvrFd(-1), dvrBuffer(nullptr, 0), cam(parent)
 {
 	verbose = 1;
 	numDemux = 0;
@@ -279,7 +279,7 @@ bool DvbLinuxDevice::acquire()
 	if (dvrFd < 0) {
 		qCWarning(logDev, "Cannot open dvr %s", qPrintable(dvrPath));
 		dvb_fe_close(dvbv5_parms);
-		dvbv5_parms = NULL;
+		dvbv5_parms = nullptr;
 		return false;
 	}
 
@@ -1438,10 +1438,10 @@ void DvbLinuxDevice::release()
 {
 	stopDvr();
 
-	if (dvrBuffer.data != NULL) {
+	if (dvrBuffer.data != nullptr) {
 		dvrBuffer.dataSize = 0;
 		frontend->writeBuffer(dvrBuffer);
-		dvrBuffer.data = NULL;
+		dvrBuffer.data = nullptr;
 	}
 
 	if (dvrPipe[0] >= 0) {
@@ -1467,7 +1467,7 @@ void DvbLinuxDevice::release()
 
 	if (dvbv5_parms) {
 		dvb_fe_close(dvbv5_parms);
-		dvbv5_parms = NULL;
+		dvbv5_parms = nullptr;
 	}
 }
 
@@ -1487,7 +1487,7 @@ void DvbLinuxDevice::startDvr()
 		}
 	}
 
-	if (dvrBuffer.data == NULL) {
+	if (dvrBuffer.data == nullptr) {
 		dvrBuffer = frontend->getBuffer();
 	}
 
@@ -1548,7 +1548,7 @@ void DvbLinuxDevice::stopDvr()
 
 void DvbLinuxDevice::run()
 {
-	Q_ASSERT((dvrFd >= 0) && (dvrPipe[0] >= 0) && (dvrBuffer.data != NULL));
+	Q_ASSERT((dvrFd >= 0) && (dvrPipe[0] >= 0) && (dvrBuffer.data != nullptr));
 	pollfd pollFds[2];
 	memset(&pollFds, 0, sizeof(pollFds));
 	pollFds[0].fd = dvrPipe[0];
@@ -1667,7 +1667,7 @@ void DvbLinuxDeviceManager::componentAdded(const QString &udi)
 	int deviceIndex = ((adapter << 16) | index);
 	DvbLinuxDevice *device = devices.value(deviceIndex);
 
-	if (device == NULL) {
+	if (device == nullptr) {
 		device = new DvbLinuxDevice(this);
 		devices.insert(deviceIndex, device);
 	}
@@ -1726,7 +1726,7 @@ void DvbLinuxDeviceManager::componentAdded(const QString &udi)
 		QString deviceId;
 		device->adapter = adapter;
 		device->index = index;
-		device->dvbv5_parms = NULL;
+		device->dvbv5_parms = nullptr;
 		if (QFile::exists(path + QLatin1String("device/vendor"))) {
 			// PCI device
 			int vendor = readSysAttr(path + QLatin1String("device/vendor"));
@@ -1764,8 +1764,8 @@ void DvbLinuxDeviceManager::componentAdded(const QString &udi)
 void DvbLinuxDeviceManager::componentRemoved(QString node, int adapter, int index) {
 	int deviceIndex = (adapter << 16) | index;
 	char adapterstring[10];
-	DvbLinuxDevice *device = devices.value(deviceIndex, NULL);
-	if (device == NULL) {
+	DvbLinuxDevice *device = devices.value(deviceIndex, nullptr);
+	if (device == nullptr) {
 		return;
 	}
 	sprintf(adapterstring, "adapter%d", adapter);

@@ -33,7 +33,7 @@
 
 #include <QEventLoop>
 
-XmlTv::XmlTv(DvbManager *manager_) : manager(manager_), r(NULL)
+XmlTv::XmlTv(DvbManager *manager_) : manager(manager_), r(nullptr)
 {
 	channelModel = manager->getChannelModel();
 	epgModel = manager->getEpgModel();
@@ -68,7 +68,7 @@ DvbEpgLangEntry *XmlTv::getLangEntry(DvbEpgEntry &epgEntry,
 
 	if (!epgEntry.langEntry.contains(code)) {
 		if (!add_code)
-			return NULL;
+			return nullptr;
 
 		DvbEpgLangEntry e;
 		epgEntry.langEntry.insert(code, e);

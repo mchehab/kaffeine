@@ -151,7 +151,7 @@ QPixmap DvbOsd::paintOsd(QRect &rect, const QFont &font, Qt::LayoutDirection)
 }
 
 DvbLiveView::DvbLiveView(DvbManager *manager_, QObject *parent) :
-	QObject(parent), manager(manager_), device(NULL), videoPid(-1),
+	QObject(parent), manager(manager_), device(nullptr), videoPid(-1),
 	audioPid(-1), subtitlePid(-1), pausedTime(0)
 {
 	mediaWidget = manager->getMediaWidget();
@@ -183,12 +183,12 @@ DvbLiveView::~DvbLiveView()
 
 void DvbLiveView::replay()
 {
-	if (device == NULL) {
+	if (device == nullptr) {
 		device = manager->requestDevice(channel->source, channel->transponder,
 			DvbManager::Shared);
 	}
 
-	if (device == NULL) {
+	if (device == nullptr) {
 		channel = DvbSharedChannel();
 		mediaWidget->stop();
 
@@ -241,9 +241,9 @@ DvbDevice *DvbLiveView::getDevice() const
 
 void DvbLiveView::playChannel(const DvbSharedChannel &channel_)
 {
-	DvbDevice *newDevice = NULL;
+	DvbDevice *newDevice = nullptr;
 
-	if ((channel.constData() != NULL) && (channel->source == channel_->source) &&
+	if ((channel.constData() != nullptr) && (channel->source == channel_->source) &&
 	    (channel->transponder.corresponds(channel_->transponder))) {
 		newDevice = manager->requestDevice(channel->source, channel->transponder,
 			DvbManager::Shared);
@@ -258,7 +258,7 @@ void DvbLiveView::playChannel(const DvbSharedChannel &channel_)
 
 void DvbLiveView::toggleOsd()
 {
-	if (channel.constData() == NULL) {
+	if (channel.constData() == nullptr) {
 		return;
 	}
 
@@ -371,7 +371,7 @@ void DvbLiveView::deviceStateChanged()
 		device = manager->requestDevice(channel->source, channel->transponder,
 			DvbManager::Shared);
 
-		if (device != NULL) {
+		if (device != nullptr) {
 			startDevice();
 		} else {
 			mediaWidget->stop();
@@ -413,10 +413,10 @@ void DvbLiveView::playbackStatusChanged(MediaWidget::PlaybackStatus playbackStat
 {
 	switch (playbackStatus) {
 	case MediaWidget::Idle:
-		if (device != NULL) {
+		if (device != nullptr) {
 			stopDevice();
 			manager->releaseDevice(device, DvbManager::Shared);
-			device = NULL;
+			device = nullptr;
 		}
 
 		pids.clear();
@@ -590,9 +590,9 @@ void DvbLiveView::updatePids(bool forcePatPmtUpdate)
 }
 
 DvbLiveViewInternal::DvbLiveViewInternal(QObject *parent) :
-	QObject(parent), mediaWidget(NULL), emptyBuffer(true), timeshift(false),
+	QObject(parent), mediaWidget(nullptr), emptyBuffer(true), timeshift(false),
 	currentAudioStream(-1), currentSubtitle(-1), retryCounter(0),
-	readFd(-1), writeFd(-1), notifier(NULL)
+	readFd(-1), writeFd(-1), notifier(nullptr)
 {
 	fileName = QStandardPaths::writableLocation(QStandardPaths::RuntimeLocation) + QLatin1String("/dvbpipe.m2t");
 	QFile::remove(fileName);

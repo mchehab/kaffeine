@@ -166,7 +166,7 @@ const char *vlcEventName(int event)
 }
 
 VlcMediaWidget::VlcMediaWidget(QWidget *parent) : AbstractMediaWidget(parent),
-    timer(NULL), vlcInstance(NULL), vlcMedia(NULL), vlcMediaPlayer(NULL),
+    timer(nullptr), vlcInstance(nullptr), vlcMedia(nullptr), vlcMediaPlayer(nullptr),
     isPaused(false), playingDvd(false), urlIsAudioCd(false),
     typeOfDevice(""), trackNumber(1), numTracks(1)
 {
@@ -270,12 +270,12 @@ bool VlcMediaWidget::init()
 	if (!vlcInstance) {
 		qCWarning(logMediaWidget, "libVLC: failed to use extra args: %s", qPrintable(args));
 		argc = 0;
-		vlcInstance = libvlc_new(0, NULL);
+		vlcInstance = libvlc_new(0, nullptr);
 		if (vlcInstance)
 			qCInfo(logMediaWidget, "Using libVLC without arguments");
 	}
 
-	if (vlcInstance == NULL) {
+	if (vlcInstance == nullptr) {
 		qFatal("Cannot create vlc instance %s", qPrintable(libvlc_errmsg()));
 		delete[] argv;
 		return false;
@@ -292,7 +292,7 @@ bool VlcMediaWidget::init()
 
 	vlcMediaPlayer = libvlc_media_player_new(vlcInstance);
 
-	if (vlcMediaPlayer == NULL) {
+	if (vlcMediaPlayer == nullptr) {
 		qFatal("Cannot create vlc media player %s", qPrintable(libvlc_errmsg()));
 		return false;
 	}
@@ -324,20 +324,20 @@ VlcMediaWidget::~VlcMediaWidget()
 	subtitles.clear();
 	subtitleId.clear();
 
-	if (timer != NULL) {
+	if (timer != nullptr) {
 		timer->stop();
 		delete timer;
 	}
 
 	unregisterEvents();
 
-	if (vlcMedia != NULL)
+	if (vlcMedia != nullptr)
 		libvlc_media_release(vlcMedia);
 
-	if (vlcInstance != NULL)
+	if (vlcInstance != nullptr)
 		libvlc_release(vlcInstance);
 
-	if (vlcMediaPlayer != NULL)
+	if (vlcMediaPlayer != nullptr)
 		libvlc_media_player_release(vlcMediaPlayer);
 }
 
@@ -346,7 +346,7 @@ VlcMediaWidget *VlcMediaWidget::createVlcMediaWidget(QWidget *parent)
 	QScopedPointer<VlcMediaWidget> vlcMediaWidget(new VlcMediaWidget(parent));
 
 	if (!vlcMediaWidget->init()) {
-		return NULL;
+		return nullptr;
 	}
 
 	return vlcMediaWidget.take();
@@ -362,7 +362,7 @@ QStringList VlcMediaWidget::getAudioDevices()
 	if (!vlcAudioOutput)
 		return audioDevices;
 
-	for (i = vlcAudioOutput; i != NULL; i = i->p_next) {
+	for (i = vlcAudioOutput; i != nullptr; i = i->p_next) {
 		QString device = QString::fromUtf8(i->psz_description);
 		audioDevices.append(device);
 	}
@@ -379,12 +379,12 @@ void VlcMediaWidget::setAudioDevice(QString device)
 	if (!vlcAudioOutput)
 		return;
 
-	for (i = vlcAudioOutput; i != NULL; i = i->p_next) {
+	for (i = vlcAudioOutput; i != nullptr; i = i->p_next) {
 		if (device.compare(QString::fromUtf8(i->psz_description)))
 			continue;
 		qCDebug(logVlc, "Setting audio output to: %s", qPrintable(i->psz_device));
 
-		libvlc_audio_output_device_set(vlcMediaPlayer, NULL, i->psz_device);
+		libvlc_audio_output_device_set(vlcMediaPlayer, nullptr, i->psz_device);
 	}
 	libvlc_audio_output_device_list_release(vlcAudioOutput);
 }
@@ -481,7 +481,7 @@ void VlcMediaWidget::setDeinterlacing(MediaWidget::DeinterlaceMode deinterlacing
 		break;
 	case MediaWidget::DeinterlaceDisabled:
 	default:
-		vlcDeinterlaceMode = NULL;
+		vlcDeinterlaceMode = nullptr;
 	}
 
 
@@ -537,7 +537,7 @@ void VlcMediaWidget::play(const MediaSource &source)
 
 	typeOfDevice = url.constData();
 
-	if (vlcMedia != NULL) {
+	if (vlcMedia != nullptr) {
 		libvlc_media_player_stop(vlcMediaPlayer);
 		libvlc_media_release(vlcMedia);
 	}
@@ -584,7 +584,7 @@ bool VlcMediaWidget::registerEvents()
 
 int VlcMediaWidget::makePlay()
 {
-	if (vlcMedia == NULL) {
+	if (vlcMedia == nullptr) {
 		libvlc_media_player_stop(vlcMediaPlayer);
 		return -1;
 	}
@@ -638,7 +638,7 @@ void VlcMediaWidget::playDirection(int direction)
 
 	strBuf += QString::number(trackNumber);
 
-	if (vlcMedia != NULL) {
+	if (vlcMedia != nullptr) {
 		libvlc_media_player_stop(vlcMediaPlayer);
 		libvlc_media_release(vlcMedia);
 	}
@@ -665,9 +665,9 @@ void VlcMediaWidget::stop()
 {
 	libvlc_media_player_stop(vlcMediaPlayer);
 
-	if (vlcMedia != NULL) {
+	if (vlcMedia != nullptr) {
 		libvlc_media_release(vlcMedia);
-		vlcMedia = NULL;
+		vlcMedia = nullptr;
 	}
 
 	timer->stop();
@@ -726,7 +726,7 @@ void VlcMediaWidget::setCurrentSubtitle(int currentSubtitle)
 
 	tr = libvlc_video_get_spu_description(vlcMediaPlayer);
 	track = tr;
-	while (track != NULL) {
+	while (track != nullptr) {
 		QString subtitle = QString::fromUtf8(track->psz_name);
 
 		if (subtitle.isEmpty()) {
@@ -888,7 +888,7 @@ void VlcMediaWidget::updateMetadata()
 	char *meta;
 
 	metadata.clear();
-	if (vlcMedia != NULL) {
+	if (vlcMedia != nullptr) {
 		QString s;
 		meta = libvlc_media_get_meta(vlcMedia, libvlc_meta_Title);
 		if (meta) {
@@ -925,12 +925,12 @@ void VlcMediaWidget::updateAudioStreams()
 	tr = libvlc_audio_get_track_description(vlcMediaPlayer);
 	track = tr;
 
-	if (track != NULL) {
+	if (track != nullptr) {
 		// skip the 'deactivate' audio channel
 		track = track->p_next;
 	}
 
-	while (track != NULL) {
+	while (track != nullptr) {
 		QString audioStream = QString::fromUtf8(track->psz_name);
 		int cutBegin = (audioStream.indexOf(QLatin1Char('[')) + 1);
 
@@ -969,12 +969,12 @@ void VlcMediaWidget::updateSubtitles()
 	tr = libvlc_video_get_spu_description(vlcMediaPlayer);
 	track = tr;
 
-	if (track != NULL) {
+	if (track != nullptr) {
 		// skip the 'deactivate' subtitle
 		track = track->p_next;
 	}
 
-	while (track != NULL) {
+	while (track != nullptr) {
 		QString subtitle = QString::fromUtf8(track->psz_name);
 
 		if (subtitle.isEmpty()) {

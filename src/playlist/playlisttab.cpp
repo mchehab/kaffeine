@@ -228,7 +228,7 @@ bool PlaylistBrowserModel::removeRows(int row, int count, const QModelIndex &par
 			currentPlaylist -= count;
 		} else {
 			currentPlaylist = -1;
-			emit playTrack(NULL, -1);
+			emit playTrack(nullptr, -1);
 		}
 	}
 
@@ -766,7 +766,7 @@ void PlaylistTab::playTrack(const QModelIndex &index)
 
 void PlaylistTab::playTrack(Playlist *playlist, int track)
 {
-	if ((track < 0) || (playlist == NULL) || (track >= playlist->tracks.size())) {
+	if ((track < 0) || (playlist == nullptr) || (track >= playlist->tracks.size())) {
 		track = -1;
 	}
 
@@ -811,7 +811,7 @@ void PlaylistTab::playTrack(Playlist *playlist, int track)
 		mediaWidget->stop();
 	}
 
-	if (playlist != NULL) {
+	if (playlist != nullptr) {
 		playlistModel->setCurrentTrack(playlist, track);
 	}
 }
